@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Campus opportunities (demo)</title>
+</head>
+<body>
+  <h1>Campus opportunities</h1>
+  <label for="q">Search opportunities</label>
+  <input id="q" type="text">
+  <button type="button" id="go">Search</button>
+  <p role="status" id="status"></p>
+  <main id="events"></main>
+
+  <script>
+    // View Source shows an empty <main>; JavaScript fills it after Search.
+    // Edit the seats below between scans to simulate Opened / Closed events.
+    var DATA = [
+      {id: "A1", title: "AI Talk", seats: 12},
+      {id: "B2", title: "  Data   Club ", seats: 0},
+      {id: "C3", title: "Robotics Lab", seats: 5}
+    ];
+    document.getElementById("go").addEventListener("click", function () {
+      setTimeout(function () {
+        var html = "";
+        DATA.forEach(function (d) {
+          html += '<article class="notice" data-id="' + d.id + '">' +
+                  '<h2>' + d.title + '</h2>' +
+                  '<p class="seats">' + d.seats + ' places available</p>' +
+                  '<a href="/events/' + d.id + '">View details</a></article>';
+        });
+        document.getElementById("events").innerHTML = html;
+        document.getElementById("status").textContent = DATA.length + " opportunities";
+      }, 400);
+    });
+  </script>
+</body>
+</html>
